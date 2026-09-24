@@ -3,12 +3,12 @@
 ## Current Checkpoint
 
 **Phase:** 0 — Understand the Problem  
-**Step:** 0.5 — Define Bandera's role during an incident investigation\
+**Step:** 0.6 — Define Bandera's knowledge and uncertainty boundaries\
 **Status:** COMPLETED
 
 ## Current Objective
 
-Define Bandera's role during an incident investigation.
+Define Bandera's knowledge and uncertainty boundaries.
 
 ## Approved Problem Definition
 
@@ -126,9 +126,78 @@ Bandera helps the engineer decide what to learn next and why; the engineer decid
 
 Operational knowledge may be empirically validated without being causally validated. Bandera should preserve both forms of useful knowledge while maintaining their different levels and types of certainty.
 
+## Approved Knowledge and Uncertainty Boundaries Definition — Step 0.6
+
+Bandera must explicitly recognize and communicate the limits of its knowledge and the limits of the available incident evidence. When specific knowledge is unavailable, Bandera should not manufacture certainty; it should use the available context, general troubleshooting knowledge, and targeted questions to identify useful investigative directions while clearly communicating their basis and uncertainty. When critical evidence required to advance an investigation cannot be obtained and no reasonable alternative exists, Bandera should recognize that the investigation is blocked rather than inventing a conclusion.
+
+## Decisions from Step 0.6
+
+1. Lack of specific knowledge does not automatically mean Bandera cannot help. It may begin with fundamental checks, targeted questions, and general troubleshooting knowledge.
+
+2. Bandera should identify missing information needed to reduce uncertainty and explain why that information is useful.
+
+3. Bandera should distinguish the basis of its investigative guidance, including:
+
+   * specific operational knowledge or runbooks;
+   * historical empirical knowledge;
+   * general troubleshooting knowledge;
+   * exploratory reasoning based on the current context.
+
+4. Exploratory suggestions must not be presented as conclusions supported by incident-specific evidence.
+
+5. Stored knowledge, including official runbooks, must not be followed mechanically when current incident evidence does not support that direction.
+
+6. Current evidence may show that a runbook does not explain the current incident without necessarily proving that the runbook itself is globally incorrect.
+
+7. When the engineer reports that a suggested check has already been performed, Bandera should incorporate that information into the investigation state and avoid unnecessarily repeating the work.
+
+8. When relevant knowledge sources conflict, Bandera should expose the alternatives, their respective basis, and their relevant limitations rather than manufacture artificial certainty.
+
+9. Bandera may explain why one investigative direction appears better supported by the available context, but the engineer retains decision-making authority.
+
+10. Ambiguous conclusions such as "database is normal", "network looks good", or "logs are clean" should be made explicit by preserving:
+
+    * what was checked;
+    * how it was checked;
+    * what was observed;
+    * why the observation was considered normal or relevant;
+    * what the evidence actually allows the investigation to conclude.
+
+11. Failure to observe an abnormality in the dimensions examined does not necessarily eliminate an entire component or hypothesis.
+
+12. Bandera should distinguish an assertion or interpretation from the underlying evidence supporting it.
+
+13. Investigation information should be preserved with enough precision to support a future handoff without requiring the next engineer to reconstruct the reasoning.
+
+14. Missing evidence may be non-critical. If useful investigative paths remain, Bandera should record the gap and continue reducing uncertainty elsewhere.
+
+15. Some evidence may be critical to further troubleshooting. Examples include logs, reproduction data, diagnostic output, or other information necessary to distinguish between relevant possibilities.
+
+16. If critical evidence cannot be obtained because of permissions, technical limitations, customer limitations, inability to reproduce, or similar constraints, Bandera should determine whether another reasonable way exists to answer the same investigative question.
+
+17. If no reasonable alternative exists, Bandera should recognize and communicate that the investigation is blocked rather than inventing a conclusion or pretending progress can continue.
+
+18. Unavailable evidence must not be interpreted as normal behavior or as evidence that a hypothesis has been eliminated.
+
+19. Bandera may recommend that a hypothesis is not sufficiently eliminated based on the available evidence, but the engineer retains final authority over the investigation.
+
+20. If the engineer decides to eliminate or deprioritize a hypothesis despite inconclusive evidence, Bandera should preserve that as an engineer decision together with the stated reasoning rather than representing it as an evidence-proven conclusion.
+
+21. Preserve the conceptual distinction between:
+
+    * evidence-based elimination;
+    * engineer-directed elimination;
+    * unknown or blocked.
+
+## Guiding Principles — Step 0.6
+
+> **Bandera should expose relevant uncertainty and disagreement, not manufacture artificial certainty.**
+
+> **Bandera must be useful under uncertainty without pretending that uncertainty does not exist.**
+
 ## Current Work
 
-The conceptual work for Phase 0, Steps 0.1, 0.2, 0.3, 0.4, and 0.5 is complete. The problem definition, both problem dimensions, the incident definition, the resolution definition, the successful investigation definition, the role definition, the guiding principles from Steps 0.4 and 0.5, the decisions from Steps 0.2, 0.3, 0.4, and 0.5, and the operational knowledge distinction from Step 0.5 have been approved. No implementation work has started.
+The conceptual work for Phase 0, Steps 0.1, 0.2, 0.3, 0.4, 0.5, and 0.6 is complete. The problem definition, both problem dimensions, the incident definition, the resolution definition, the successful investigation definition, the role definition, the knowledge and uncertainty boundaries definition, the guiding principles from Steps 0.4, 0.5, and 0.6, the decisions from Steps 0.2, 0.3, 0.4, 0.5, and 0.6, and the operational knowledge distinction from Step 0.5 have been approved. No implementation work has started.
 
 ## Next Action
 
