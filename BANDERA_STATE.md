@@ -3,12 +3,12 @@
 ## Current Checkpoint
 
 **Phase:** 0 — Understand the Problem  
-**Step:** 0.6 — Define Bandera's knowledge and uncertainty boundaries\
+**Step:** 0.7 — Define the investigation state\
 **Status:** COMPLETED
 
 ## Current Objective
 
-Define Bandera's knowledge and uncertainty boundaries.
+Define the investigation state.
 
 ## Approved Problem Definition
 
@@ -195,9 +195,135 @@ Bandera must explicitly recognize and communicate the limits of its knowledge an
 
 > **Bandera must be useful under uncertainty without pretending that uncertainty does not exist.**
 
+## Approved Investigation State Definition — Step 0.7
+
+Bandera must preserve both the current state of an incident investigation and the relevant history that explains how that state was reached. The current state should allow another engineer to continue the investigation immediately, while the investigation history should preserve the evidence, hypotheses, actions, results, decisions, corrections, unknowns, and reasoning necessary to understand what has already been investigated and avoid unnecessary reconstruction or repetition of work.
+
+## Decisions from Step 0.7
+
+1. Bandera should preserve two distinct conceptual views of an investigation:
+
+   * the current investigation state;
+   * the investigation history.
+
+2. The current investigation state is optimized for immediate continuity and handoff. It should make it possible to answer, in priority order:
+
+   * Where are we?
+   * What are we investigating now?
+   * What are we doing next/currently?
+   * How are we doing it?
+   * Why are we doing it?
+
+3. The investigation history is optimized for traceability, learning, and avoiding repeated investigative work.
+
+4. The investigation history must not be merely a chronological activity log. It should preserve the reasoning relationships between:
+
+   * hypotheses;
+   * why they were considered;
+   * evidence or actions used to investigate them;
+   * observed results;
+   * interpretations;
+   * decisions;
+   * current or historical disposition.
+
+5. Historical information should allow a future engineer to determine whether a newly proposed investigative direction has already been explored, what was actually done, what was observed, and why the investigation moved away from or returned to that direction.
+
+6. Bandera should update its current understanding without rewriting the history of how that understanding evolved.
+
+7. If a hypothesis was previously considered eliminated and later evidence invalidates that conclusion, Bandera should:
+
+   * preserve the original elimination and its reasoning in the history;
+   * preserve the new evidence that changed the interpretation;
+   * record why the previous conclusion is no longer supported;
+   * update the current state to reflect the hypothesis's new disposition.
+
+8. Historical changes in understanding are themselves potentially valuable learning signals and should not be erased.
+
+9. Corrections to incident information should not silently overwrite previous information when the previous value may have influenced the investigation.
+
+10. When relevant, Bandera should preserve:
+
+    * the previous value;
+    * the corrected/current value;
+    * the source of the correction;
+    * the reason or evidence for the correction.
+
+11. The current state should normally present the best currently supported information, while the history preserves how that information changed.
+
+12. Preserving historical corrections does not mean performing root cause analysis during the active incident. It preserves information that may later support RCA or other post-incident analysis.
+
+13. Bandera should preserve the provenance of relevant information whenever it is known.
+
+14. Provenance may distinguish information originating from sources such as:
+
+    * customer reports;
+    * engineer observations;
+    * logs;
+    * metrics;
+    * traces;
+    * monitoring data;
+    * runbooks;
+    * documentation;
+    * external sources;
+    * other operational knowledge.
+
+15. Preserving provenance allows Bandera and future investigators to understand not only what is currently believed, but why it is believed and where the information originated.
+
+16. Conflicting information from different sources should be preserved as a contradiction requiring clarification rather than silently collapsed into a single unsupported version.
+
+17. Preserving provenance does not currently require implementing a numeric confidence or trust scoring system.
+
+18. Bandera should distinguish between raw evidence/artifacts and the relevant findings extracted from those artifacts.
+
+19. Large raw artifacts such as complete log files should not need to be copied into the investigation state when most of their content is irrelevant to the investigation.
+
+20. For an evidence artifact such as a log file, Bandera should preserve enough contextual metadata to understand and locate the source when available and relevant, including concepts such as:
+
+    * artifact/file name;
+    * source or origin;
+    * system/server/component from which it came;
+    * location or path when relevant;
+    * capture or collection time;
+    * what the artifact represents or records;
+    * why it was collected.
+
+21. The investigation state should preserve the specific relevant findings extracted from the artifact, such as the small number of log lines, events, observations, or values that materially contributed to the investigation.
+
+22. Relevant findings should preserve their investigative context, including why they matter and, when applicable, which hypothesis or investigative question they support, weaken, eliminate, or otherwise inform.
+
+23. The original artifact may remain externally available or referencable without its complete contents becoming part of the investigation state.
+
+24. Bandera should preserve relevant operational or tribal knowledge contributed by engineers when it helps explain:
+
+    * what an artifact represents;
+    * how it is normally used;
+    * what is normally checked;
+    * why a particular check matters;
+    * other useful operational context.
+
+25. Engineer-contributed tribal or operational knowledge should retain its provenance and must not automatically be promoted to validated organizational knowledge merely because it was stated during an investigation.
+
+26. The preserved investigation state and history should provide enough precision to support:
+
+    * immediate handoff;
+    * continuation without reconstructing previous work;
+    * avoidance of unnecessary repeated investigation;
+    * later post-incident analysis or RCA;
+    * identification of potentially reusable operational learning.
+
+## Guiding Principles — Step 0.7
+
+> **Bandera should preserve both what we currently believe and how our understanding evolved.**
+
+> **The current state should optimize for continuation; the history should optimize for traceability and learning.**
+
+> **Preserve the reasoning, not just the artifacts.**
+
+> **Preserve relevant findings and artifact provenance, not unnecessary raw evidence inside the investigation state.**
+
 ## Current Work
 
-The conceptual work for Phase 0, Steps 0.1, 0.2, 0.3, 0.4, 0.5, and 0.6 is complete. The problem definition, both problem dimensions, the incident definition, the resolution definition, the successful investigation definition, the role definition, the knowledge and uncertainty boundaries definition, the guiding principles from Steps 0.4, 0.5, and 0.6, the decisions from Steps 0.2, 0.3, 0.4, 0.5, and 0.6, and the operational knowledge distinction from Step 0.5 have been approved. No implementation work has started.
+The conceptual work for Phase 0, Steps 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, and 0.7 is complete. The problem definition, both problem dimensions, the incident definition, the resolution definition, the successful investigation definition, the role definition, the knowledge and uncertainty boundaries definition, the investigation state definition, the guiding principles from Steps 0.4, 0.5, 0.6, and 0.7, the decisions from Steps 0.2, 0.3, 0.4, 0.5, 0.6, and 0.7, and the operational knowledge distinction from Step 0.5 have been approved. No implementation work has started.
 
 ## Next Action
 
