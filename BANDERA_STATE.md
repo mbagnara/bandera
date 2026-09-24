@@ -3,12 +3,12 @@
 ## Current Checkpoint
 
 **Phase:** 0 — Understand the Problem  
-**Step:** 0.3 — Define when an incident is considered resolved\
+**Step:** 0.4 — Define what constitutes a successful incident investigation\
 **Status:** COMPLETED
 
 ## Current Objective
 
-Define when an incident is considered resolved.
+Define what constitutes a successful incident investigation.
 
 ## Approved Problem Definition
 
@@ -65,9 +65,39 @@ Bandera considers an incident resolved when the affected operational behavior ha
 10. Root cause analysis, permanent remediation, or other follow-up investigation should not keep an incident artificially open once operational service has been restored and resolution has been sufficiently validated.
 11. The incident record should preserve how resolution occurred and what remains unknown or pending so that validated learning can contribute to future investigations.
 
+## Approved Successful Investigation Definition — Step 0.4
+
+A successful Bandera investigation systematically reduces incident uncertainty through deliberate actions guided by evidence and hypotheses. Each investigative action should have an explicit purpose and produce information that helps confirm, weaken, or eliminate a hypothesis, reduce the search space, or improve understanding of the problem. The investigation must also preserve a clear and transferable state so that another investigator can continue the work without reconstructing or unnecessarily repeating what has already been done.
+
+## Guiding Principle — Step 0.4
+
+Bandera should optimize for information gained, not activity performed.
+
+## Decisions from Step 0.4
+
+1. Understand and delimit the problem before investigating broadly. Initial context should be used to reduce the search space before extensive technical investigation begins.
+2. Evidence should drive hypotheses. Hypotheses should be grounded in the available context and evidence rather than generated as arbitrary possibilities.
+3. Hypotheses should drive investigative actions. Requests for logs, reproductions, tests, metrics, or other evidence should have an explicit reason connected to what the investigation is trying to learn.
+4. A well-designed test that disproves a hypothesis is a successful investigative action because it reduces uncertainty and eliminates part of the search space.
+5. The current set of hypotheses must not be assumed to be exhaustive. Eliminating existing hypotheses may reveal that an important scenario was not considered initially.
+6. Investigation is iterative. New evidence may require reassessing the current understanding, questioning previous assumptions, and generating new or revised hypotheses.
+7. Eliminated hypotheses and the evidence used to eliminate them should be preserved. They should not simply disappear from the investigation history, because this prevents unnecessary repetition unless new evidence justifies reconsideration.
+8. Each investigative action should have expected informational value. Before performing an action, there should be reasonable clarity about what is being sought, why it matters, and how the possible result will affect the investigation.
+9. More investigative activity does not imply a better investigation. Successful investigations should minimize work that does not change understanding, reduce uncertainty, distinguish between hypotheses, or inform the next decision.
+10. Investigation reasoning must be preserved, not only technical artifacts. Logs, metrics, traces, screenshots, and test results are insufficient without context explaining what was being investigated and why.
+11. Investigation state must be transferable. Another engineer should be able to continue the investigation without reconstructing hours of prior reasoning or unnecessarily repeating previous work.
+12. For an investigation handoff, the highest-priority operational context is:
+
+    - Where are we?
+    - What are we doing now?
+    - How should it be done?
+    - Why are we doing it?
+
+    Supporting evidence, known facts, hypotheses, previous tests, and eliminated possibilities should remain available for deeper inspection.
+
 ## Current Work
 
-The conceptual work for Phase 0, Steps 0.1, 0.2, and 0.3 is complete. The problem definition, both problem dimensions, the incident definition, the resolution definition, and the decisions from Steps 0.2 and 0.3 have been approved. No implementation work has started.
+The conceptual work for Phase 0, Steps 0.1, 0.2, 0.3, and 0.4 is complete. The problem definition, both problem dimensions, the incident definition, the resolution definition, the successful investigation definition, the guiding principle from Step 0.4, and the decisions from Steps 0.2, 0.3, and 0.4 have been approved. No implementation work has started.
 
 ## Next Action
 
