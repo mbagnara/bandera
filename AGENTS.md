@@ -48,3 +48,15 @@ This project is also a learning project.
 Do not hide important implementation concepts behind unnecessary automation.
 
 Prefer changes that can be understood, inspected, tested, and explained by the project owner.
+
+## Application Development
+
+Bandera is a real software application, not a notebook-based project.
+
+Use Python as the primary programming language.
+
+Do not create Jupyter notebooks (`.ipynb`) unless explicitly requested.
+
+Experiments and prototypes should, when appropriate, be implemented as executable Python code, tests, or application components that can evolve toward production.
+
+Prefer code that can be run, tested, inspected, and eventually deployed as part of the application.
