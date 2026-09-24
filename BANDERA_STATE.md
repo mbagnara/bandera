@@ -3,12 +3,12 @@
 ## Current Checkpoint
 
 **Phase:** 0 — Understand the Problem  
-**Step:** 0.4 — Define what constitutes a successful incident investigation\
+**Step:** 0.5 — Define Bandera's role during an incident investigation\
 **Status:** COMPLETED
 
 ## Current Objective
 
-Define what constitutes a successful incident investigation.
+Define Bandera's role during an incident investigation.
 
 ## Approved Problem Definition
 
@@ -95,9 +95,40 @@ Bandera should optimize for information gained, not activity performed.
 
     Supporting evidence, known facts, hypotheses, previous tests, and eliminated possibilities should remain available for deeper inspection.
 
+## Approved Role Definition — Step 0.5
+
+Bandera is an investigation copilot that works in partnership with the engineer to progressively reduce incident ambiguity and guide troubleshooting toward service restoration. It uses the available incident context, operational knowledge, runbooks, prior validated learnings, and engineer-provided evidence to identify missing information, characterize the problem, formulate and evaluate investigative directions, and recommend what should be investigated next and why. Bandera provides guidance and reasoning, while the engineer retains decision-making authority and performs all interactions with the systems being investigated.
+
+## Guiding Principle — Step 0.5
+
+Bandera helps the engineer decide what to learn next and why; the engineer decides and performs what to do.
+
+## Decisions from Step 0.5
+
+1. Bandera is an investigation copilot, not an autonomous investigator.
+2. Bandera should help identify missing information needed to reduce ambiguity and move the investigation forward.
+3. Bandera should help characterize the observed problem without prematurely presenting a possible cause as established fact.
+4. Bandera should use available operational knowledge, runbooks, prior validated learnings, and relevant historical experience to provide a consistent starting point for troubleshooting.
+5. Bandera should recommend what to investigate next and explain why that investigation is relevant to reducing uncertainty.
+6. Bandera and the engineer should maintain a shared and evolving understanding of the incident as new evidence becomes available.
+7. Engineer input may provide context, observations, operational experience, and judgment that Bandera does not possess. It should be incorporated into the investigation rather than treated merely as a command.
+8. Bandera advises; the engineer decides. Final investigative and operational decision-making authority remains with the engineer.
+9. When evidence contradicts or weakens an engineer-proposed direction, Bandera should make that evidence and its relevance visible, but should not prevent the engineer from choosing that direction.
+10. The engineer may legitimately prioritize rapid service restoration over deeper causal investigation when operational impact requires it.
+11. Bandera must distinguish between evidence, hypotheses, experience-based operational judgment, and validated causal conclusions.
+12. Bandera should preserve useful empirical operational knowledge, including tribal knowledge, without incorrectly promoting correlation or repeated operational experience into an unvalidated causal conclusion.
+13. A pattern such as "this action has previously restored service for incidents with similar symptoms" can be useful operational knowledge even when the root cause remains unknown.
+14. Bandera does not directly access, query, modify, restart, or otherwise operate the systems being investigated.
+15. The engineer remains the authorized boundary between Bandera and operational systems. The engineer obtains evidence and performs actions using the appropriate permissions and approved mechanisms. This boundary exists for security, access-control, operational-control, and related restrictions.
+16. After the engineer provides new evidence or the result of an action, Bandera should reassess the investigation state and use that information to guide the next investigation cycle.
+
+## Operational Knowledge Distinction — Step 0.5
+
+Operational knowledge may be empirically validated without being causally validated. Bandera should preserve both forms of useful knowledge while maintaining their different levels and types of certainty.
+
 ## Current Work
 
-The conceptual work for Phase 0, Steps 0.1, 0.2, 0.3, and 0.4 is complete. The problem definition, both problem dimensions, the incident definition, the resolution definition, the successful investigation definition, the guiding principle from Step 0.4, and the decisions from Steps 0.2, 0.3, and 0.4 have been approved. No implementation work has started.
+The conceptual work for Phase 0, Steps 0.1, 0.2, 0.3, 0.4, and 0.5 is complete. The problem definition, both problem dimensions, the incident definition, the resolution definition, the successful investigation definition, the role definition, the guiding principles from Steps 0.4 and 0.5, the decisions from Steps 0.2, 0.3, 0.4, and 0.5, and the operational knowledge distinction from Step 0.5 have been approved. No implementation work has started.
 
 ## Next Action
 
