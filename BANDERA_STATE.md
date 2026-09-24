@@ -2,13 +2,13 @@
 
 ## Current Checkpoint
 
-**Phase:** 0 — Understand the Problem  
-**Step:** 0.8 — Define how Bandera selects the next investigative step\
+**Phase:** 0 — Understand the Problem — COMPLETED\
+**Step:** 0.9 — Define Phase 0 acceptance criteria\
 **Status:** COMPLETED
 
 ## Current Objective
 
-Define how Bandera selects the next investigative step.
+Define Phase 0 acceptance criteria.
 
 ## Approved Problem Definition
 
@@ -385,13 +385,91 @@ Bandera should recommend the next investigative action based on its expected use
 
 > **Operational urgency may change the immediate objective from reducing diagnostic uncertainty to restoring service safely, without converting restoration into proof of causality.**
 
+## Phase 0 Acceptance Criteria — Step 0.9
+
+### AC-1 — Problem clarity
+
+An engineer unfamiliar with Bandera can understand the problem Bandera is intended to solve and the expected behavior of the system during an incident investigation without needing implementation or architecture details.
+
+Bandera supports the systematic reduction of uncertainty in initially ambiguous technical incidents through evidence, hypotheses, investigative actions, engineer judgment, and iterative reassessment, while preserving validated learnings that may improve future investigations.
+
+### AC-2 — Responsibility boundary
+
+Bandera's responsibility and authority boundaries are sufficiently defined.
+
+Bandera:
+
+* acts as an investigation copilot;
+* identifies missing information;
+* interprets engineer-provided evidence;
+* formulates and evaluates investigative directions;
+* recommends what should be learned or investigated next and explains why;
+* recognizes uncertainty, contradictions, and investigation blockers;
+* preserves investigation state, history, reasoning, and provenance.
+
+The engineer:
+
+* retains decision-making authority;
+* obtains evidence from the systems being investigated;
+* performs operational actions;
+* decides whether Bandera's recommendations should be followed.
+
+Bandera does not directly access, query, modify, restart, or otherwise operate the systems being investigated.
+
+Preserve the established principle:
+
+> **Bandera helps the engineer decide what to learn next and why; the engineer decides and performs what to do.**
+
+### AC-3 — Success is evaluable
+
+Bandera's success can be evaluated primarily by the quality of its investigative reasoning and justified reduction of uncertainty rather than simply whether it eventually identifies the root cause.
+
+A successful investigation may include:
+
+* understanding and delimiting the problem before prematurely assigning a cause;
+* identifying relevant missing information;
+* distinguishing facts, evidence, hypotheses, operational judgment, and causal conclusions;
+* grounding investigative directions in available evidence and context;
+* recommending actions with explicit investigative purpose;
+* using positive and negative results to reduce the search space;
+* avoiding unnecessary repeated work;
+* recognizing uncertainty and legitimate blockers;
+* considering investigative value, operational cost, risk, disruption, and reversibility;
+* preserving reasoning and provenance;
+* maintaining a state that supports effective handoff;
+* avoiding the conversion of successful restoration into unsupported causal certainty.
+
+An investigation may be successful even if root cause remains unknown when uncertainty has been systematically reduced until a legitimate evidence limitation or blocker is reached.
+
+Conversely, guessing the correct root cause without justified reasoning does not by itself constitute a successful Bandera investigation.
+
+### AC-4 — Minimal implementation boundary
+
+Phase 1 should attempt to demonstrate only Bandera's core investigation-copilot behavior before introducing additional architectural complexity.
+
+The first implementation should answer the fundamental question:
+
+> **Given an incident and information progressively supplied by an engineer, can Bandera behave as the investigation copilot defined during Phase 0?**
+
+Phase 1 should not assume that technologies or capabilities such as RAG, agents, tool integrations, automated knowledge ingestion, advanced observability, enterprise infrastructure, ticketing integrations, or direct system access are required from the beginning.
+
+Additional complexity should be introduced only when an observed limitation provides a concrete reason for it.
+
+Preserve the project evolution principle:
+
+> **Start simple → Measure → Find the limitation → Earn the complexity.**
+
+### Acceptance Review
+
+All four Phase 0 acceptance criteria (AC-1 through AC-4) have been reviewed and accepted. Step 0.9 is COMPLETED. Phase 0 — Understand the Problem is COMPLETED.
+
 ## Current Work
 
-The conceptual work for Phase 0, Steps 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, and 0.8 is complete. The problem definition, both problem dimensions, the incident definition, the resolution definition, the successful investigation definition, the role definition, the knowledge and uncertainty boundaries definition, the investigation state definition, the next investigative step definition, the guiding principles from Steps 0.4, 0.5, 0.6, 0.7, and 0.8, the decisions from Steps 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, and 0.8, and the operational knowledge distinction from Step 0.5 have been approved. No implementation work has started.
+The conceptual work for Phase 0, Steps 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, and 0.9 is complete. The problem definition, both problem dimensions, the incident definition, the resolution definition, the successful investigation definition, the role definition, the knowledge and uncertainty boundaries definition, the investigation state definition, the next investigative step definition, the guiding principles from Steps 0.4, 0.5, 0.6, 0.7, and 0.8, the decisions from Steps 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, and 0.8, and the operational knowledge distinction from Step 0.5 have been approved. All four Phase 0 acceptance criteria have been reviewed and accepted, and Phase 0 is complete. The project checkpoint remains at the completed Phase 0 boundary. No implementation work has started.
 
 ## Next Action
 
-Await explicit instruction before advancing the project checkpoint. No next project step has been defined.
+Await explicit instruction before advancing beyond the completed Phase 0 boundary. Phase 1 has not been started, and no Phase 1 implementation tasks have been defined.
 
 ## Open Questions
 
