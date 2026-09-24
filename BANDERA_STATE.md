@@ -3,12 +3,12 @@
 ## Current Checkpoint
 
 **Phase:** 0 — Understand the Problem  
-**Step:** 0.7 — Define the investigation state\
+**Step:** 0.8 — Define how Bandera selects the next investigative step\
 **Status:** COMPLETED
 
 ## Current Objective
 
-Define the investigation state.
+Define how Bandera selects the next investigative step.
 
 ## Approved Problem Definition
 
@@ -321,9 +321,73 @@ Bandera must preserve both the current state of an incident investigation and th
 
 > **Preserve relevant findings and artifact provenance, not unnecessary raw evidence inside the investigation state.**
 
+## Approved Next Investigative Step Definition — Step 0.8
+
+Bandera should recommend the next investigative action based on its expected usefulness in reducing uncertainty or advancing safe service restoration, while considering the current evidence, investigative value, operational cost, risk, disruption, reversibility, and relevant engineer judgment. The most likely hypothesis is not necessarily the best next action.
+
+## Decisions from Step 0.8
+
+1. Bandera should not prioritize investigative work solely according to which hypothesis currently appears most likely.
+
+2. Bandera should consider the expected investigative value of an action: how much useful information the action may produce and how much uncertainty it may reduce.
+
+3. A fast, low-cost test that can meaningfully confirm, weaken, or eliminate a hypothesis may reasonably be prioritized ahead of investigating a more likely hypothesis whose evidence is significantly more expensive or time-consuming to obtain.
+
+4. The value of an investigative action should be considered together with practical operational factors including:
+
+   * time;
+   * operational cost;
+   * risk;
+   * customer or service disruption;
+   * reversibility.
+
+5. When reasonable alternatives exist, Bandera should generally favor informative actions that are lower-risk and reversible.
+
+6. A disruptive action may still be a valid recommendation when its potential value or restoration benefit justifies consideration, but Bandera should make the relevant risk and trade-off visible.
+
+7. The engineer retains authority over whether a potentially disruptive action is actually performed.
+
+8. Bandera should value discriminating tests: investigative actions whose possible outcomes meaningfully separate major competing explanations or reduce large portions of the search space.
+
+9. An investigative action may be highly valuable even when it produces a negative result, provided that the negative result meaningfully eliminates possibilities or reduces uncertainty.
+
+10. Bandera should avoid equating investigative progress with finding abnormal behavior. A normal or negative result may represent substantial progress when it changes what should be investigated next.
+
+11. Relevant engineer operational judgment may influence the prioritization of investigative actions.
+
+12. When engineer experience changes the investigative priority, Bandera should preserve the provenance of that judgment and distinguish it from evidence obtained from the current incident.
+
+13. Engineer operational experience may provide useful empirical direction without establishing a validated causal relationship.
+
+14. Incident conditions may change the immediate objective of the investigation.
+
+15. During a high-impact incident, safe restoration of service may temporarily take priority over maximizing diagnostic information or determining root cause.
+
+16. A known safe and reversible workaround may therefore reasonably be prioritized over a slower diagnostic action when operational impact justifies it.
+
+17. Successful restoration through a workaround or operational action does not by itself prove the root cause of the incident.
+
+18. Service restoration and causal investigation must remain conceptually distinct.
+
+19. When restoration is prioritized, Bandera should preserve unresolved diagnostic uncertainty and any investigation that may still be required after service is restored.
+
+20. Bandera should explain the reasoning and trade-offs behind its recommended next action rather than merely producing a task to perform.
+
+21. Bandera recommends and explains; the engineer retains final decision-making authority.
+
+## Guiding Principles — Step 0.8
+
+> **Bandera should optimize for useful progress, not simply for the most likely hypothesis or the greatest amount of diagnostic activity.**
+
+> **The best next investigative action is not necessarily the one targeting the most likely hypothesis; it is the action expected to produce the most useful progress given the current context, cost, risk, and available alternatives.**
+
+> **Negative evidence is valuable when it meaningfully reduces the search space.**
+
+> **Operational urgency may change the immediate objective from reducing diagnostic uncertainty to restoring service safely, without converting restoration into proof of causality.**
+
 ## Current Work
 
-The conceptual work for Phase 0, Steps 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, and 0.7 is complete. The problem definition, both problem dimensions, the incident definition, the resolution definition, the successful investigation definition, the role definition, the knowledge and uncertainty boundaries definition, the investigation state definition, the guiding principles from Steps 0.4, 0.5, 0.6, and 0.7, the decisions from Steps 0.2, 0.3, 0.4, 0.5, 0.6, and 0.7, and the operational knowledge distinction from Step 0.5 have been approved. No implementation work has started.
+The conceptual work for Phase 0, Steps 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, and 0.8 is complete. The problem definition, both problem dimensions, the incident definition, the resolution definition, the successful investigation definition, the role definition, the knowledge and uncertainty boundaries definition, the investigation state definition, the next investigative step definition, the guiding principles from Steps 0.4, 0.5, 0.6, 0.7, and 0.8, the decisions from Steps 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, and 0.8, and the operational knowledge distinction from Step 0.5 have been approved. No implementation work has started.
 
 ## Next Action
 
