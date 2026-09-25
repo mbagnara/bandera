@@ -2,13 +2,13 @@
 
 ## Current Checkpoint
 
-**Phase:** 0 — Understand the Problem — COMPLETED\
-**Step:** 0.9 — Define Phase 0 acceptance criteria\
+**Phase:** 1 — Simplest Possible AI — IN PROGRESS\
+**Step:** 1.1 — Define the minimum end-to-end behavior\
 **Status:** COMPLETED
 
 ## Current Objective
 
-Define Phase 0 acceptance criteria.
+Define the minimum end-to-end behavior.
 
 ## Approved Problem Definition
 
@@ -463,13 +463,132 @@ Preserve the project evolution principle:
 
 All four Phase 0 acceptance criteria (AC-1 through AC-4) have been reviewed and accepted. Step 0.9 is COMPLETED. Phase 0 — Understand the Problem is COMPLETED.
 
+## Step 1.1 — Minimum end-to-end behavior
+
+### Purpose
+
+The first Bandera implementation must demonstrate the smallest useful end-to-end investigation-copilot behavior defined during Phase 0.
+
+The fundamental question is:
+
+> Given an incident and information progressively supplied by an engineer, can Bandera maintain a coherent investigation, identify what matters next, explain why, and support the engineer through investigation until resolution or a legitimate blocker?
+
+### Minimum sufficient information to begin
+
+Bandera can begin an investigation when the available information identifies:
+
+1. an affected operation or behavior; and
+2. an observable deviation from expected behavior.
+
+This is the minimum threshold for beginning an investigation.
+
+Information such as scope, impact, urgency, start time, common context, recent changes, logs, metrics, traces, screenshots, and other technical evidence may initially be unknown and can be progressively collected during the investigation.
+
+Important distinction:
+
+> Sufficient information to begin an investigation does not mean sufficient information to diagnose the incident or formulate a justified technical cause.
+
+Bandera should not behave like a rigid intake form requiring all potentially useful information before investigation can begin.
+
+If even the affected operation/behavior and observable deviation cannot be identified, Bandera should seek clarification before constructing an investigation state.
+
+### Minimum first-response responsibilities
+
+Once the minimum threshold is met, Bandera's first useful response must conceptually:
+
+1. Construct the current understanding of the incident using only the information actually available.
+2. Identify relevant unknowns that materially limit the current understanding.
+3. Consider available impact and urgency information so the engineer can evaluate whether deeper investigation or faster restoration should receive immediate attention.
+4. Recommend what would be most useful to learn or do next and explain why.
+
+Bandera must avoid premature root-cause claims.
+
+### Operational urgency and human authority
+
+Reducing uncertainty is a central Bandera objective, but it is not an absolute objective independent of operational impact.
+
+During high-impact or high-urgency incidents, rapid and safe service restoration may be more valuable than deeper immediate diagnosis.
+
+However:
+
+> Operational priority influences Bandera's recommendations, but does not transfer decision authority from the engineer to Bandera.
+
+Bandera should present relevant information, uncertainty, available directions, investigative/restoration value, risk, cost, disruption, reversibility, and trade-offs when relevant.
+
+Bandera may make a recommendation, but the engineer decides whether to continue diagnosis, attempt restoration, gather more evidence, or take another operational action.
+
+When restoration urgency competes with diagnostic value, Bandera should make the trade-off explicit and provide enough information for the engineer to make the operational decision.
+
+Do not encode a universal assumption that a specific P1/P2/P3/P4 label always implies one fixed behavior. Organizational severity/priority definitions may vary. Impact and urgency are operational context that influence recommendations.
+
+### Iterative investigation behavior
+
+Each time the engineer provides new information, evidence, an answer to a question, or the result of an action, Bandera should:
+
+1. Incorporate the new information into the current investigation state.
+2. Reassess what is known and what remains unknown.
+3. Determine what materially changed in the investigation.
+4. Update relevant investigative directions or hypotheses without treating the interaction as a new incident.
+5. Avoid unnecessarily repeating questions or work already completed.
+6. Recommend the next useful investigative or restoration-oriented step and explain why.
+7. Preserve the engineer's decision authority.
+
+Conceptually:
+
+Incident description
+→ Current understanding
+→ Relevant unknowns
+→ Impact / urgency context
+→ Next useful recommendation + reasoning
+→ Engineer decides and acts
+→ New evidence / result
+→ Updated investigation state
+→ Reassessment
+→ Next useful recommendation
+→ Repeat
+
+### Minimum end-to-end boundary
+
+The minimum Phase 1 behavior should be capable of progressing conceptually from:
+
+> **Minimum incident intake → iterative investigation → engineer-provided evidence/results → updated reasoning → resolution or legitimate investigation blocker**
+
+Resolution does not require root-cause identification.
+
+Bandera must preserve the distinction between service restoration and causal proof.
+
+For example, if a restart restores normal service and customer-side validation confirms that the original symptom no longer reproduces, Bandera may recognize the incident as resolved according to the Phase 0 resolution criteria.
+
+It must not conclude that the restarted component caused the incident unless the available evidence supports that causal conclusion.
+
+If critical evidence required to advance the investigation cannot be obtained and no reasonable alternative exists, Bandera should recognize that the investigation is blocked rather than inventing a conclusion.
+
+### Relationship to the handoff model
+
+The investigation state should continue to support the four handoff-oriented questions established during Phase 0:
+
+1. Where are we?
+2. What are we investigating now?
+3. What are we doing next/currently?
+4. Why?
+
+During the earliest interaction, not all four questions may yet have substantive answers. The minimum intake and iterative investigation behavior should progressively build enough state to answer them meaningfully.
+
+### Step 1.1 acceptance statement
+
+Step 1.1 is complete when the minimum behavioral boundary above is documented clearly enough that the next Phase 1 work can define the simplest implementation capable of demonstrating it without introducing unnecessary architecture.
+
+**Step 1.1 status:** COMPLETED
+
+**Phase 1 status:** IN PROGRESS
+
 ## Current Work
 
-The conceptual work for Phase 0, Steps 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, and 0.9 is complete. The problem definition, both problem dimensions, the incident definition, the resolution definition, the successful investigation definition, the role definition, the knowledge and uncertainty boundaries definition, the investigation state definition, the next investigative step definition, the guiding principles from Steps 0.4, 0.5, 0.6, 0.7, and 0.8, the decisions from Steps 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, and 0.8, and the operational knowledge distinction from Step 0.5 have been approved. All four Phase 0 acceptance criteria have been reviewed and accepted, and Phase 0 is complete. The project checkpoint remains at the completed Phase 0 boundary. No implementation work has started.
+The conceptual work for Phase 0, Steps 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, and 0.9 is complete. The problem definition, both problem dimensions, the incident definition, the resolution definition, the successful investigation definition, the role definition, the knowledge and uncertainty boundaries definition, the investigation state definition, the next investigative step definition, the guiding principles from Steps 0.4, 0.5, 0.6, 0.7, and 0.8, the decisions from Steps 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, and 0.8, and the operational knowledge distinction from Step 0.5 have been approved. All four Phase 0 acceptance criteria have been reviewed and accepted, and Phase 0 is complete. The conceptual work for Phase 1, Step 1.1 is complete, and its minimum end-to-end behavioral boundary is documented. Phase 1 remains IN PROGRESS. No implementation work has started.
 
 ## Next Action
 
-Await explicit instruction before advancing beyond the completed Phase 0 boundary. Phase 1 has not been started, and no Phase 1 implementation tasks have been defined.
+Await explicit instruction before defining or beginning the next Phase 1 step. No next Phase 1 step has been defined or started.
 
 ## Open Questions
 
