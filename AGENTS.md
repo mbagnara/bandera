@@ -22,6 +22,14 @@ Bandera follows:
 
 Prefer the simplest implementation that satisfies the current objective.
 
+## Repository Evolution
+
+Bandera is a single evolving codebase. Do not duplicate the application into phase/version directories to preserve old versions; Git history preserves those versions.
+
+Tags or GitHub releases may identify meaningful milestones only when explicitly requested. Do not create them automatically.
+
+Create directories only for current application or project needs, not to represent project phases.
+
 ## Architectural Decisions
 
 Do not make significant architectural decisions implicitly.
