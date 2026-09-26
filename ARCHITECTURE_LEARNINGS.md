@@ -411,6 +411,167 @@ It means starting with the smallest useful mechanism for learning whether the sy
 
 ---
 
+## 10. Application Behavior, Model Interaction, Inference Runtime, and Model Are Separate Concerns
+
+### Context
+
+While evaluating Bandera's initial local LLM, several concerns could easily have been treated as a single technology decision.
+
+For example:
+
+Bandera → Ollama → Qwen
+
+could incorrectly be understood as one inseparable architecture.
+
+However, these represent different concerns.
+
+Conceptually:
+
+Bandera behavior  
+→ model interaction  
+→ inference runtime  
+→ model
+
+The required behavior of Bandera describes what the investigation copilot must accomplish.
+
+Model interaction describes how the application supplies context and receives model output.
+
+The inference runtime executes the model.
+
+The model provides the underlying language-model capability.
+
+### Learning
+
+Model selection and inference-runtime selection are different engineering decisions.
+
+The behavior required from Bandera should not become unnecessarily dependent on the implementation details of a particular inference runtime.
+
+Similarly, selecting a model should not automatically determine how that model must be executed.
+
+The same conceptual Bandera behavior may eventually be exercised through different combinations, such as:
+
+Bandera → Ollama → local model
+
+Bandera → llama.cpp → local model
+
+Bandera → hosted inference → open-weight model
+
+Bandera → cloud API → frontier model
+
+These possibilities do not imply that Bandera must support all of them.
+
+They demonstrate that the concerns are conceptually distinct.
+
+### Architectural Principle
+
+> Separate the behavior the application requires from the mechanism used to execute the model that provides it.
+
+### Architectural Implication
+
+The initial implementation may use one concrete model and one concrete runtime.
+
+No generalized runtime architecture is required yet.
+
+However, Bandera should avoid unnecessary coupling between its investigation behavior and runtime-specific implementation details.
+
+---
+
+## 11. Do Not Abstract Model Variability Before Observing It
+
+### Context
+
+Bandera may eventually evaluate or use multiple models, runtimes, or model providers.
+
+This creates an apparent opportunity to immediately introduce abstractions such as:
+
+LLMProvider  
+├── LocalProvider  
+├── CloudProvider  
+├── ProviderA  
+└── ProviderB
+
+However, Bandera has not yet integrated multiple real model environments.
+
+Therefore, the actual differences that such an abstraction would need to represent have not yet been observed.
+
+### Learning
+
+Designing an abstraction before observing the real variability it must contain risks encoding assumptions instead of requirements.
+
+The first implementation should use the simplest concrete integration necessary to exercise Bandera.
+
+When a second model, runtime, or provider is introduced for a real purpose, the project can observe:
+
+- what remains stable;
+- what actually varies;
+- which configuration differences matter;
+- which behaviors are provider-specific;
+- which behaviors belong to Bandera itself.
+
+Only then is there evidence for designing an appropriate abstraction.
+
+### Architectural Principle
+
+> Do not design an abstraction for variability that has not yet been observed.
+
+A useful progression is:
+
+Concrete implementation  
+→ introduce real second implementation  
+→ observe differences  
+→ identify stable boundary  
+→ abstract only what evidence shows should be abstracted
+
+### Architectural Implication
+
+Bandera should not introduce a generalized model-provider abstraction solely because multiple providers may be useful in the future.
+
+Such an abstraction should be earned by an observed integration requirement.
+
+---
+
+## 12. Experimental Baselines Should Reduce Confounding Variables
+
+### Context
+
+Bandera considered using a smaller local model because it would require fewer computational resources.
+
+However, the purpose of the initial experiment is not to demonstrate that Bandera can operate using the smallest possible model.
+
+The first question is whether Bandera can exhibit the investigation-copilot behavior defined by the project.
+
+Choosing a deliberately constrained model could introduce an additional explanation for poor results:
+
+Is the Bandera behavior or instruction design insufficient?
+
+Or is the underlying model simply not capable enough for the task?
+
+### Learning
+
+The simplest experimental baseline is not necessarily the smallest or cheapest model.
+
+A baseline should be selected so that avoidable limitations do not unnecessarily interfere with the question the experiment is intended to answer.
+
+When available hardware can reasonably support a more capable model without introducing substantial additional system complexity, using that model may reduce one source of experimental ambiguity.
+
+This does not prove that the larger model is better for the eventual product.
+
+That conclusion requires Bandera-specific evaluation.
+
+### Architectural Principle
+
+> Select an experimental baseline to reduce irrelevant sources of failure, not merely to minimize resource consumption.
+
+### Architectural Implication
+
+The initial development baseline should be sufficiently capable to make the experiment meaningful while remaining operationally simple enough for the current phase.
+
+Later evaluation may demonstrate that a smaller, faster, or less expensive model satisfies Bandera's requirements equally well or well enough to justify its use.
+
+Model-efficiency decisions should therefore be supported by Bandera-specific evaluation rather than parameter count alone.
+
+---
+
 ## Document Maintenance Rule
 
 Add a learning to this document only when it represents a generalizable engineering or architectural insight that could materially influence Bandera's design, evaluation, evolution, or production operation.
