@@ -3,12 +3,12 @@
 ## Current Checkpoint
 
 **Phase:** 1 — Simplest Possible AI — IN PROGRESS\
-**Step:** 1.1 — Define the minimum end-to-end behavior\
+**Step:** 1.2 — Define the simplest way to exercise the behavior\
 **Status:** COMPLETED
 
 ## Current Objective
 
-Define the minimum end-to-end behavior.
+Define the simplest way to exercise the behavior.
 
 ## Approved Problem Definition
 
@@ -582,9 +582,179 @@ Step 1.1 is complete when the minimum behavioral boundary above is documented cl
 
 **Phase 1 status:** IN PROGRESS
 
+## Step 1.2 — Define the simplest way to exercise the behavior
+
+### Minimum functional interface
+
+The initial Bandera implementation will support one persistent conversational investigation between an Engineer and Bandera.
+
+The engineer can initiate an investigation, provide information progressively through successive messages, and receive Bandera responses while the investigation context is maintained during that application execution.
+
+The first user interface will be a **local interactive text CLI**.
+
+No web UI, dashboard, authentication, ticketing interface, or multi-user interface is required for the initial implementation.
+
+### Runtime investigation scope
+
+The initial implementation will support **one active investigation per application execution**.
+
+Investigation context only needs to survive while that application process is running.
+
+If the application stops, the investigation may be lost.
+
+This is an intentional Phase 1 scope decision.
+
+### Conversation history
+
+The initial implementation will use **conversation history as its runtime investigation context**.
+
+The conversation history should allow Bandera to reason across successive engineer messages rather than treating each message as a new incident.
+
+### Explicit investigation state
+
+An explicit structured investigation state will **not** be implemented in the initial version.
+
+However, this is a deliberately deferred capability, not an optional idea.
+
+Bandera will eventually require explicit investigation state because the current investigation understanding must be independently usable for purposes such as:
+
+- investigation continuity;
+- engineer handoff;
+- internal incident updates;
+- management/status communication;
+- customer-facing communication;
+- future operational learning.
+
+Conversation history and investigation state are conceptually different:
+
+> History explains how we got here.  
+> Investigation state explains where we are now.
+
+The initial implementation should avoid unnecessary architectural decisions that would make later introduction of explicit investigation state difficult.
+
+### Durable persistence
+
+Durable persistence across application executions is intentionally deferred.
+
+Do not select a database, file format, storage engine, schema technology, or persistence architecture during Step 1.2.
+
+The project should first validate the behavior worth persisting.
+
+### Real LLM
+
+The initial implementation must use a **real LLM**, not a mock model.
+
+The purpose of Phase 1 is to observe whether an actual language model can exhibit the Bandera investigation-copilot behavior defined during Phase 0 and Step 1.1.
+
+### Development baseline versus production model
+
+The model used during initial development is a **development baseline**.
+
+It is not automatically Bandera's future production model.
+
+Bandera's required behavior should remain conceptually independent from the specific model used to implement it.
+
+Future production model selection will require Bandera-specific evaluation and qualification.
+
+### Evaluation-driven model selection
+
+Bandera will progressively move toward evaluation-driven model selection.
+
+The conceptual progression is:
+
+Behavior specification  
+→ development baseline  
+→ Bandera-specific investigation scenarios  
+→ evaluation criteria  
+→ measured behavior  
+→ model comparison  
+→ production qualification
+
+The goal is not identical textual responses across models.
+
+The goal is sufficiently consistent satisfaction of Bandera's required investigation behavior.
+
+A formal evaluation framework is not required during Step 1.2.
+
+However, useful scenarios, failures, corrections, and difficult cases discovered during development should be preserved because they may later become evaluation cases.
+
+### Initial baseline model
+
+The selected initial development baseline is:
+
+**Qwen3.5-27B**
+
+This selection means:
+
+- it is the initial experimental/development baseline;
+- it is not a production-model selection;
+- it has not been proven superior to other models through Bandera-specific evaluation;
+- it was selected because the available local hardware can reasonably support a more capable model without requiring cloud infrastructure, reducing one avoidable experimental confounder.
+
+Do not state that Qwen3.5-27B is the best model for Bandera.
+
+### Initial inference runtime
+
+The selected initial inference runtime is:
+
+**Ollama running locally**
+
+The purpose of this choice is to provide the simplest practical mechanism for the Python application to interact with the selected local model without introducing unnecessary inference infrastructure into Phase 1.
+
+The intended initial Python interaction mechanism is the **Ollama Python client**.
+
+Runtime decision boundaries:
+
+- Ollama is the initial development runtime;
+- it is not a permanent production-runtime decision;
+- model selection and inference-runtime selection are separate engineering decisions.
+
+### No generalized model abstraction yet
+
+Do not introduce a generalized model-provider or inference-runtime abstraction during the initial implementation.
+
+Bandera has not yet observed real variability across multiple integrations.
+
+The project should first implement one concrete integration.
+
+If a second real model/provider/runtime is later introduced, the project can observe what remains stable and what actually varies before designing an abstraction.
+
+### Cloud reference
+
+No cloud model will be integrated during the initial implementation.
+
+A capable cloud model may later be useful as a reference when evaluating whether observed failures originate primarily from:
+
+- Bandera's instructions or design;
+- insufficient context;
+- evaluation ambiguity;
+- or limitations of the local baseline model.
+
+This is a future evaluation role, not part of the initial implementation.
+
+### Step 1.2 completion statement
+
+Step 1.2 is completed because the project now has a sufficiently precise answer to:
+
+> What is the simplest way to exercise Bandera's minimum end-to-end investigation behavior?
+
+The resulting minimum experimental path is conceptually:
+
+Engineer  
+→ local interactive text CLI  
+→ Bandera Python application  
+→ in-memory conversation history  
+→ Ollama Python client  
+→ local Ollama runtime  
+→ Qwen3.5-27B  
+→ Bandera response  
+→ next engineer message
+
+**Step 1.2 status:** COMPLETED
+
 ## Current Work
 
-The conceptual work for Phase 0, Steps 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, and 0.9 is complete. The problem definition, both problem dimensions, the incident definition, the resolution definition, the successful investigation definition, the role definition, the knowledge and uncertainty boundaries definition, the investigation state definition, the next investigative step definition, the guiding principles from Steps 0.4, 0.5, 0.6, 0.7, and 0.8, the decisions from Steps 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, and 0.8, and the operational knowledge distinction from Step 0.5 have been approved. All four Phase 0 acceptance criteria have been reviewed and accepted, and Phase 0 is complete. The conceptual work for Phase 1, Step 1.1 is complete, and its minimum end-to-end behavioral boundary is documented. Phase 1 remains IN PROGRESS. No implementation work has started.
+The conceptual work for Phase 0, Steps 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, and 0.9 is complete. The problem definition, both problem dimensions, the incident definition, the resolution definition, the successful investigation definition, the role definition, the knowledge and uncertainty boundaries definition, the investigation state definition, the next investigative step definition, the guiding principles from Steps 0.4, 0.5, 0.6, 0.7, and 0.8, the decisions from Steps 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, and 0.8, and the operational knowledge distinction from Step 0.5 have been approved. All four Phase 0 acceptance criteria have been reviewed and accepted, and Phase 0 is complete. The conceptual work for Phase 1, Step 1.1 is complete, and its minimum end-to-end behavioral boundary is documented. Step 1.2 is also complete: the local interactive text CLI, one investigation per execution, in-memory conversation history, Qwen3.5-27B development baseline, and local Ollama runtime with the Ollama Python client have been selected, with the documented deferrals and boundaries. Phase 1 remains IN PROGRESS. No implementation work has started.
 
 ## Next Action
 
