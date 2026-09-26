@@ -41,10 +41,12 @@ This describes the intended development approach, not stages already implemented
 ## Current Status
 
 - Phase 0 — Understand the Problem: **Completed**
-- Phase 1 — Simplest Possible AI: **Not started**
+- Phase 1 — Simplest Possible AI: **In progress**
 - Application implementation: **Not started**
 
 Phase 0 established the problem definition, investigation principles, human/AI responsibility boundary, uncertainty handling, investigation state, and criteria for evaluating successful investigation behavior. No application implementation exists yet.
+
+Steps 1.1 and 1.2 are complete: the minimum Bandera behavior and the simplest experimental path for exercising it have been conceptually defined.
 
 ## Project State
 
