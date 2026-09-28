@@ -572,6 +572,61 @@ Model-efficiency decisions should therefore be supported by Bandera-specific eva
 
 ---
 
+## 13. Investigation State Should Represent Evolving Understanding, Not a Troubleshooting Queue
+
+An incident investigation is not adequately represented as a checklist of completed actions or a queue of hypotheses waiting to be tested.
+
+New evidence can change the interpretation of previous evidence, alter the current localization of the problem, weaken or eliminate existing hypotheses, introduce new hypotheses, change their priority, and invalidate the previously expected next investigative action.
+
+Therefore, investigation state should primarily represent the team's **current understanding of the incident**, while investigation history preserves how that understanding evolved.
+
+Conceptually:
+
+```text
+Current understanding
+        ↓
+Investigation
+        ↓
+New evidence
+        ↓
+Reassessment
+        ↓
+Updated understanding
+```
+
+rather than:
+
+```text
+Hypothesis 1
+    ↓
+Hypothesis 2
+    ↓
+Hypothesis 3
+```
+
+This learning complements the existing distinction between conversation history and investigation state:
+
+- investigation state answers **where the investigation currently stands**;
+- investigation history explains **how that understanding was reached**.
+
+The state must be capable of evolving when new evidence changes previous interpretations rather than merely recording forward progress through a predetermined troubleshooting sequence.
+
+This learning does **not** require implementing explicit investigation state now.
+
+It does not prescribe:
+
+- a data structure;
+- a schema;
+- a database;
+- a state-management framework;
+- a workflow engine;
+- an agent framework;
+- or any particular implementation.
+
+It constrains how explicit investigation state should eventually be modeled when the project has earned that capability.
+
+---
+
 ## Document Maintenance Rule
 
 Add a learning to this document only when it represents a generalizable engineering or architectural insight that could materially influence Bandera's design, evaluation, evolution, or production operation.
