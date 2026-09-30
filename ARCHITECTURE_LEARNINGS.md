@@ -627,6 +627,40 @@ It constrains how explicit investigation state should eventually be modeled when
 
 ---
 
+## 14. Behavioral Specification and Model Instruction Are Separate Concerns
+
+### Context
+
+Bandera's behavioral specification defines required application behavior independently of a particular prompt or model. Model instruction is one mechanism intended to elicit that behavior.
+
+### Learning
+
+The presence of a requirement in a prompt does not demonstrate that the model complies with it. Actual behavior must be observed and evaluated.
+
+### Architectural implication
+
+Prompts, models, inference runtimes, and control mechanisms may evolve without redefining the intended application behavior. Keep the required behavior distinct from the mechanism used to produce it.
+
+---
+
+## 15. Prompts Are Versioned System Components
+
+### Context
+
+Model instructions can materially affect application behavior. Bandera's current instruction artifact, `prompts/investigation_copilot.md`, has the logical version identifier `0.1.0`.
+
+### Learning
+
+Treat model instructions that materially affect behavior as explicit versioned system artifacts. Git preserves historical versions; do not create historical prompt copies merely for version preservation. Separate prompt files should represent different responsibilities, not historical versions of the same prompt.
+
+### Architectural implication
+
+Future evaluations should identify at minimum the prompt version and model used so behavioral changes and regressions can be traced. Git tags remain reserved for meaningful Bandera product milestones rather than every prompt revision.
+
+This does not require a prompt-management framework, prompt registry, database, evaluation framework, or other infrastructure.
+
+---
+
 ## Document Maintenance Rule
 
 Add a learning to this document only when it represents a generalizable engineering or architectural insight that could materially influence Bandera's design, evaluation, evolution, or production operation.

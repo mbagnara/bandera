@@ -3,12 +3,12 @@
 ## Current Checkpoint
 
 **Phase:** 1 — Simplest Possible AI — IN PROGRESS\
-**Step:** 1.3 — Define the minimum Bandera model behavior\
+**Step:** 1.4 — Define minimum model instruction\
 **Status:** COMPLETED
 
 ## Current Objective
 
-Define the minimum Bandera model behavior.
+Define minimum model instruction.
 
 ## Approved Problem Definition
 
@@ -1153,9 +1153,43 @@ Do not create or document the actual system prompt in Step 1.3.
 
 Do not begin implementation.
 
+## Step 1.4 — Define minimum model instruction
+
+### Purpose
+
+Translate the behavioral requirements defined in Step 1.3 into the minimum instruction supplied to the model.
+
+### Principles
+
+- The behavioral specification defines what Bandera is required to do.
+- The model instruction is a mechanism intended to elicit that behavior from a model.
+- Having a requirement in the model instruction does not prove the model satisfies it; actual behavior must be observed and later evaluated.
+- The initial instruction should remain minimal enough that future changes are driven by observed behavior rather than speculative prompt engineering.
+- The initial model has no RAG, external runbooks, knowledge base, tools, direct system access, or explicit structured investigation state.
+- The model works from the instruction, the engineer's messages, conversation history, and its own general model knowledge.
+- Do not imply access to sources or capabilities that do not exist.
+
+### Minimum instruction artifact
+
+The approved instruction is recorded in [prompts/investigation_copilot.md](prompts/investigation_copilot.md), with logical version **0.1.0**. Its full contents are maintained in that artifact rather than duplicated here.
+
+The instruction covers seven behavioral areas:
+
+1. Identity & Authority
+2. Working Under Uncertainty
+3. Localize Before Explaining
+4. Form and Evolve Hypotheses
+5. Select the Next Useful Action
+6. Reassess and Incorporate Engineer Judgment
+7. Balance Restoration and Investigative Limits
+
+**Step 1.4 status:** COMPLETED
+
+The first versioned model-instruction artifact has been created. This does not establish that a model satisfies the behavioral specification. Application implementation has not begun.
+
 ## Current Work
 
-The conceptual work for Phase 0, Steps 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, and 0.9 is complete. The problem definition, both problem dimensions, the incident definition, the resolution definition, the successful investigation definition, the role definition, the knowledge and uncertainty boundaries definition, the investigation state definition, the next investigative step definition, the guiding principles from Steps 0.4, 0.5, 0.6, 0.7, and 0.8, the decisions from Steps 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, and 0.8, and the operational knowledge distinction from Step 0.5 have been approved. All four Phase 0 acceptance criteria have been reviewed and accepted, and Phase 0 is complete. The conceptual work for Phase 1, Step 1.1 is complete, and its minimum end-to-end behavioral boundary is documented. Step 1.2 is also complete: the local interactive text CLI, one investigation per execution, in-memory conversation history, Qwen3.5-27B development baseline, and local Ollama runtime with the Ollama Python client have been selected, with the documented deferrals and boundaries. Step 1.3 is complete: the minimum model-independent behavioral contract, seven behavioral rules, and cross-cutting constraints are documented. Phase 1 remains IN PROGRESS. No implementation work has started.
+The conceptual work for Phase 0, Steps 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, and 0.9 is complete. The problem definition, both problem dimensions, the incident definition, the resolution definition, the successful investigation definition, the role definition, the knowledge and uncertainty boundaries definition, the investigation state definition, the next investigative step definition, the guiding principles from Steps 0.4, 0.5, 0.6, 0.7, and 0.8, the decisions from Steps 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, and 0.8, and the operational knowledge distinction from Step 0.5 have been approved. All four Phase 0 acceptance criteria have been reviewed and accepted, and Phase 0 is complete. The conceptual work for Phase 1, Step 1.1 is complete, and its minimum end-to-end behavioral boundary is documented. Step 1.2 is also complete: the local interactive text CLI, one investigation per execution, in-memory conversation history, Qwen3.5-27B development baseline, and local Ollama runtime with the Ollama Python client have been selected, with the documented deferrals and boundaries. Step 1.3 is complete: the minimum model-independent behavioral contract, seven behavioral rules, and cross-cutting constraints are documented. Step 1.4 is complete: the minimum model instruction is recorded as prompt version 0.1.0 in prompts/investigation_copilot.md. Phase 1 remains IN PROGRESS. No application implementation work has started.
 
 ## Next Action
 
