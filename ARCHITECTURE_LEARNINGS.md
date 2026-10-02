@@ -661,6 +661,22 @@ This does not require a prompt-management framework, prompt registry, database, 
 
 ---
 
+## 16. Time to First Visible Feedback and Total Response Latency Are Separate UX Concerns
+
+### Context
+
+During real Bandera execution, the model was functioning correctly, but waiting for the complete response made the CLI appear unresponsive.
+
+### Learning
+
+Immediate status feedback and streamed output can improve perceived responsiveness without reducing actual inference time.
+
+### Architectural implication
+
+AI application evaluation should distinguish total response latency from time to first visible feedback. A working model and a responsive user experience are separate concerns.
+
+---
+
 ## Document Maintenance Rule
 
 Add a learning to this document only when it represents a generalizable engineering or architectural insight that could materially influence Bandera's design, evaluation, evolution, or production operation.
