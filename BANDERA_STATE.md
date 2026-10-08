@@ -4,11 +4,11 @@
 
 **Phase:** 1 — Simplest Possible AI — IN PROGRESS\
 **Step:** 1.5 — Minimum Conversational Investigation Loop\
-**Status:** CONCEPTUALLY COMPLETED — NOT IMPLEMENTED
+**Status:** COMPLETED
 
 ## Current Objective
 
-Document the approved minimum conversational investigation loop decisions without implementing the loop.
+Implement and verify the approved minimum conversational investigation loop.
 
 ## Approved Problem Definition
 
@@ -1191,7 +1191,7 @@ The first versioned model-instruction artifact has been created. This does not e
 
 **Step 1.5 conceptual status:** COMPLETED
 
-The following decisions define the minimum conversational mechanism. The conversational loop has not been implemented, and its verification criteria have not yet been exercised.
+The following decisions define the minimum conversational mechanism. The loop is implemented and its minimum verification criteria have been exercised against local qwen3.5:27b. One execution completed two turns, supplied the complete ordered history on the second call, incorporated evidence that timeouts preceded deployment, and terminated on /exit without a third inference. This verifies the mechanism, not consistent investigative quality.
 
 ### 1.5.1 — Conversation continuity
 
@@ -1238,11 +1238,11 @@ The following decisions define the minimum conversational mechanism. The convers
 
 ## Current Work
 
-The conceptual work for Phase 0, Steps 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, and 0.9 is complete. The problem definition, both problem dimensions, the incident definition, the resolution definition, the successful investigation definition, the role definition, the knowledge and uncertainty boundaries definition, the investigation state definition, the next investigative step definition, the guiding principles from Steps 0.4, 0.5, 0.6, 0.7, and 0.8, the decisions from Steps 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, and 0.8, and the operational knowledge distinction from Step 0.5 have been approved. All four Phase 0 acceptance criteria have been reviewed and accepted, and Phase 0 is complete. The conceptual work for Phase 1, Step 1.1 is complete, and its minimum end-to-end behavioral boundary is documented. Step 1.2 is also complete: the local interactive text CLI, one investigation per execution, in-memory conversation history, Qwen3.5-27B development baseline, and local Ollama runtime with the Ollama Python client have been selected, with the documented deferrals and boundaries. Step 1.3 is complete: the minimum model-independent behavioral contract, seven behavioral rules, and cross-cutting constraints are documented. Step 1.4 is complete: the minimum model instruction is recorded as prompt version 0.1.0 in prompts/investigation_copilot.md. Phase 1 remains IN PROGRESS. The first executable shell is implemented in bandera.py: it loads the existing prompt and its version metadata, confirms startup, and fails clearly on read or metadata errors. The application now accepts one incident description, sends the existing instruction as a system message and the incident as a user message to local qwen3.5:27b through the official Ollama Python client, immediately reports that Bandera is investigating, streams one response as Ollama content chunks arrive with flushed output, and exits. Empty response streams and failures during streaming are reported as errors. Input and model-call failures are reported clearly. It has no conversation loop, multi-turn history, or persistence. Step 1.5 is conceptually complete: conversation continuity, engineer input, investigation status, turn behavior, session termination, and minimum verification criteria are documented. The conversational loop remains unimplemented. The checkpoint is Step 1.5; no later step has been defined.
+The conceptual work for Phase 0, Steps 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, and 0.9 is complete. The problem definition, both problem dimensions, the incident definition, the resolution definition, the successful investigation definition, the role definition, the knowledge and uncertainty boundaries definition, the investigation state definition, the next investigative step definition, the guiding principles from Steps 0.4, 0.5, 0.6, 0.7, and 0.8, the decisions from Steps 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, and 0.8, and the operational knowledge distinction from Step 0.5 have been approved. All four Phase 0 acceptance criteria have been reviewed and accepted, and Phase 0 is complete. The conceptual work for Phase 1, Step 1.1 is complete, and its minimum end-to-end behavioral boundary is documented. Step 1.2 is also complete: the local interactive text CLI, one investigation per execution, in-memory conversation history, Qwen3.5-27B development baseline, and local Ollama runtime with the Ollama Python client have been selected, with the documented deferrals and boundaries. Step 1.3 is complete: the minimum model-independent behavioral contract, seven behavioral rules, and cross-cutting constraints are documented. Step 1.4 is complete: the minimum model instruction is recorded as prompt version 0.1.0 in prompts/investigation_copilot.md. Phase 1 remains IN PROGRESS. The first executable shell is implemented in bandera.py: it loads the existing prompt and its version metadata, confirms startup, and fails clearly on read or metadata errors. The application now maintains the complete ordered conversation history in memory, with the system instruction first, followed by engineer messages and complete successfully streamed assistant responses. Each turn uses local qwen3.5:27b through the official Ollama Python client and preserves immediate status feedback and flushed streaming output. /exit is detected before history insertion or model invocation and ends the session without assigning an investigation status. Existing prompt, input, and stream validation remain in place. There is no durable persistence, explicit investigation-state representation, or programmatic message classification. Step 1.5 is implemented and verified with a real two-turn investigation including evidence that challenges the initial deployment timeline. The checkpoint is Step 1.5; no later step has been defined.
 
 ## Next Action
 
-Await explicit authorization to implement the approved Step 1.5 conversational loop. No implementation is authorized by this documentation update, and no later project step has been defined or started.
+Await review of the completed Step 1.5 implementation. No later project step has been defined or started.
 
 ## Open Questions
 
