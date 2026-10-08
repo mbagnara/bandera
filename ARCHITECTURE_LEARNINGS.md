@@ -677,6 +677,54 @@ AI application evaluation should distinguish total response latency from time to
 
 ---
 
+## 17. Model Behavior Is Not Portable Across Models
+
+### Context
+
+A behavioral requirement satisfied by one model does not establish that another model, or another version of the same model, will satisfy it.
+
+### Learning
+
+Model-independent behavioral contracts and repeatable evaluations are necessary before treating models as interchangeable system components.
+
+### Architectural implication
+
+Verify required behavior for each candidate model or model version rather than assuming that behavior transfers from a previously evaluated model.
+
+---
+
+## 18. Model–Application Responsibility Boundary
+
+### Context
+
+Generative AI architecture includes responsibilities delegated to a probabilistic model and responsibilities owned or guaranteed by a deterministic application.
+
+### Learning
+
+The boundary should be explicit and driven by the nature of the task, required reliability, consequences of failure, and observed model performance.
+
+### Architectural implication
+
+Evaluation may justify moving responsibilities from the model into explicit application logic.
+
+---
+
+## 19. Structure Should Be Earned by System Needs and Observed Model Limitations
+
+### Context
+
+An early natural-language baseline can expose actual model behavior before the application commits to schemas and explicit state representations.
+
+### Learning
+
+Structured output should be introduced when machine integration, reliability, observability, safety, or observed behavioral limitations justify it, rather than merely because structured output is technically available.
+
+### Architectural implication
+
+Use system needs and observed model limitations to justify structure; do not require schemas or explicit state representations solely because they can be implemented.
+
+---
+
 ## Document Maintenance Rule
 
 Add a learning to this document only when it represents a generalizable engineering or architectural insight that could materially influence Bandera's design, evaluation, evolution, or production operation.
